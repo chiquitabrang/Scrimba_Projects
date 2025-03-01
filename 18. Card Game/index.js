@@ -9,6 +9,7 @@ let currentCardId = "";
 let computerPts = 0;
 let userPts = 0;
 
+// window.addEventListener("resize", toggleTitle)
 newDeck.addEventListener("click", handleClick);
 drawCard.addEventListener("click", draw2Cards);
 
@@ -121,3 +122,15 @@ function compareCard(card1, card2) {
     }
   }
 }
+
+// function toggleTitle() {
+//   const title = document.querySelector(".game-title")
+
+//   if (window.matchMedia("(min-width: 769px)").matches) {
+//     title.style.display = "block"
+//   } else {
+//     title.style.display = "none"
+//   }
+// }
+
+// toggleTitle()

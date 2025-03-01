@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 body {
-  background-image: url(background.jpg);
+  background-image: url(green_bg.jpg);
   background-size: cover;
   font-family: "Exo 2", sans-serif;
   max-height: 100vh;
@@ -32,8 +32,13 @@ p {
 .top-container {
   width: 100vw;
 }
+
 .remaining-cards {
   display: inline-block;
+}
+
+.game-title {
+  display: none;
 }
 
 button.draw {
@@ -91,14 +96,38 @@ button#new-deck {
 }
 
 @media (min-width: 769px) {
+  #new-deck {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .top-container p {
+    font-size: 1.6rem;
+  }
+
+  .game-title {
+    display: block;
+  }
+
+  .game-title {
+    text-align: center;
+    color: #fff100;
+    font-weight: bold;
+    font-size: 2.2rem;
+  }
+
   .img-container {
     width: 50vw;
-    height: 60vh;
+    height: 65vh;
     display: grid;
     grid-template: 1fr 5fr / 1fr 1fr;
     grid-template-areas:
       "t1 t2"
       "c1 c2";
+  }
+
+  .img-container p {
+    font-size: 2rem;
   }
 
   .img-container p:first-child {
@@ -122,5 +151,13 @@ button#new-deck {
   .card-slot {
     margin: 0 auto;
     width: 70%;
+  }
+
+  .draw {
+    font-weight: bold;
+  }
+
+  .modal {
+    width: 50vw;
   }
 }
