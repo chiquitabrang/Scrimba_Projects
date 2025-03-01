@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Karla", sans-serif;
+  background-color: #f5f5f5;
+}
+
+nav {
+  padding: 10px;
+}
+
+nav > h3 {
+  margin: 0;
+  text-align: center;
+}
+
+#container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+form {
+  padding: 10px;
+  background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input,
+textarea,
+button {
+  padding: 10px;
+}
+
+textarea {
+  resize: none;
+  height: 80px;
+  font-family: inherit;
+}

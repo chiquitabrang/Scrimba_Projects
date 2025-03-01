@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Scheme</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav>Color Scheme</nav>
+    <section>
+      <div class="top-section">
+        <input class="color-display" type="color" value="#004000"></input>
+        <div class="select-container" id="select-container">
+          <label for="select-color"></label>
+          <select name="colors" id="select-color">
+            <option value="monochrome" selected>Monochrome</option>
+            <option value="monochrome-dark">Monochrome-dark</option>
+            <option value="monochrome-light">Monochrome-light</option>
+            <option value="analogic">Analogic</option>
+            <option value="complement">complement</option>
+          </select>
+          <i class="fa-solid fa-chevron-down" id="dropdown-icon"></i>
+        </div>
+        <button id="button">Get Color Scheme</button>
+      </div>
+      <div class="display-color-selection">
+        <div class="color1"></div>
+        <div class="color2"></div>
+        <div class="color3"></div>
+        <div class="color4"></div>
+        <div class="color5"></div>
+        <div class="hexcode1">#00000</div>
+        <div class="hexcode2"></div>
+        <div class="hexcode3"></div>
+        <div class="hexcode4"></div>
+        <div class="hexcode5"></div>
+      </div>
+    </section>
+
+    <script src="index.js"></script>
+  </body>
+</html>
