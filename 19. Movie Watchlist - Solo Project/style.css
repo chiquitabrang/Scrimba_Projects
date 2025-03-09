@@ -86,7 +86,8 @@ input {
   z-index: 100;
 }
 
-.watchlist {
+.watchlist,
+.search-movie {
   width: 20rem;
   height: 4rem;
   background-color: #efc51c;
@@ -243,17 +244,24 @@ input {
   width: 50%;
   max-height: 70%;
   height: auto;
-  background-color: pink;
+  background-color: #282828;
   z-index: 200;
   border-radius: 1rem;
   display: none;
   flex-direction: column;
   padding: 2rem;
   overflow-y: auto;
+  color: #fff;
 }
 
-.modal.active {
-  display: flex;
+.fa-xmark {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  margin-top: 1rem;
+  color: aliceblue;
+  font-size: 2rem;
+  z-index: 500;
 }
 
 .detail-top {
@@ -276,6 +284,7 @@ input {
 
 .text-details * {
   margin-bottom: 0.8rem;
+  color: #d3d3d3;
 }
 
 .text-details h2 {
@@ -297,7 +306,7 @@ input {
   justify-content: center;
   font-size: 0.3rem;
   vertical-align: middle;
-  color: #000;
+  color: #fff;
   cursor: default;
 }
 
@@ -308,11 +317,12 @@ input {
 
 .rating i {
   cursor: default;
+  color: #efc51c;
 }
 
 .detail-bottom {
   height: 45%;
-  padding: 1rem;
+  padding: 1rem 0;
   font-size: 1.3rem;
 }
 

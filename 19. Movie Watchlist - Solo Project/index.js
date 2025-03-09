@@ -1,6 +1,7 @@
 const tmdbApiKey = "4bf3883f6b777dd0086dae920ffb1d44";
 const movieGrid = document.getElementById("movie-grid");
 const movieDetailsInModal = document.getElementById("movie-details");
+let currentMovieDetails = null;
 
 async function getRandomRelease(apiKey, numberOfMovies) {
   try {
@@ -76,12 +77,6 @@ async function getMovieDetails(movieId) {
   }
 }
 
-function convertMinutes(minutes) {
-  let hours = Math.floor(minutes / 60);
-  let mins = minutes % 60;
-  return `${hours}h ${mins}m`;
-}
-
 document.addEventListener("click", async function (e) {
   if (e.target.classList.contains("details-btn")) {
     const movieId = e.target.dataset.movieid;
@@ -97,9 +92,15 @@ document.addEventListener("click", async function (e) {
       const casts = movieCredits.cast
         .filter((cast) => cast.known_for_department === "Acting")
         .slice(0, 3);
-      casts.map((cast) => console.log(cast.name));
+      // casts.map((cast) => cast.name);
+      // const casts =
+      //   movieCredits.cast && Array.isArray(movieCredits.cast)
+      //     ? movieCredits.cast
+      //         .filter((cast) => cast.known_for_department === "Acting")
+      //         .slice(0, 3)
+      //     : [];
 
-      detailsInModal(movieDetails, director, casts);
+      renderMovieDetailsModal(movieDetails, director, casts);
     } catch (error) {
       console.error("Error fetching movie details:", error);
     }
@@ -118,32 +119,59 @@ async function getMovieCredits(movieId) {
   }
 }
 
-function detailsInModal(detail1, detail2, detail3) {
-  const baseUrl = "https://image.tmdb.org/t/p/";
-  const imgSize = "w342";
-  const posterUrl = baseUrl + imgSize + detail1.poster_path;
-  const runtime = detail1.runtime;
-  const yearReleased = detail1.release_date;
-  const year = yearReleased.slice(0, 4);
-  const hoursInTime = convertMinutes(runtime);
-  const rating = detail1.vote_average;
-  const genres = detail1.genres;
-  const genre = genres
-    .map((genre) => {
-      return genre.name;
-    })
+async function showMovieDetails(movieId) {
+  try {
+    const movieDetails = await getMovieDetails(movieId);
+    const movieCredits = await getMovieCredits(movieId);
+    const director = movieCredits.crew.filter(
+      (crew) => crew.job === "Director"
+    )[0];
+    const casts = movieCredits.cast
+      .filter((cast) => cast.known_for_department === "Acting")
+      .slice(0, 3);
+
+    currentMovieDetails = {
+      id: movieDetails.id,
+      title: movieDetails.title,
+      poster_path: movieDetails.poster_path,
+      release_date: movieDetails.release_date,
+      runtime: movieDetails.runtime,
+      vote_average: movieDetails.vote_average,
+      overview: movieDetails.overview,
+      genres: movieDetails.genres,
+      director: director.name,
+      stars: casts.map((cast) => cast.name).join(", "),
+    };
+
+    renderMovieDetailsModal(currentMovieDetails, casts, director);
+
+    movieDetailsInModal.style.display = "flex";
+  } catch (error) {
+    console.error("Error fetching movie details:", error);
+  }
+}
+
+function renderMovieDetailsModal(movie, director, casts) {
+  const posterUrl = "https://image.tmdb.org/t/p/w500" + movie.poster_path;
+  const runtime = movie.runtime;
+  const year = movie.release_date.substring(0, 4);
+  const hours = Math.floor(runtime / 60);
+  const minutes = runtime % 60;
+  const hoursInTime = `${hours}h ${minutes}m`;
+  const rating = movie.vote_average.toFixed(1);
+  const genre = movie.genres
+    .map((genre) => genre.name)
     .join(`<i class="fa-solid fa-circle"></i>`);
-  const stars = detail3
-    .map((star) => {
-      return star.name;
-    })
+  const stars = casts
+    .map((cast) => cast.name)
     .join(`<i class="fa-solid fa-circle"></i>`);
 
   movieDetailsInModal.innerHTML = `
     <div class="detail-top">
-      <img src="${posterUrl}" alt="${detail1.title}">
+      <i class="fa-solid fa-xmark"></i>
+      <img src="${posterUrl}" alt="${movie.title}">
       <div class="text-details">
-        <h2>${detail1.title}</h2>
+        <h2>${movie.title}</h2>
         <div class="year-hour">
           <p>${year} <i class="fa-solid fa-circle"></i>${hoursInTime}</p>
         </div>
@@ -155,13 +183,41 @@ function detailsInModal(detail1, detail2, detail3) {
       </div>
     </div>
     <div class="detail-bottom">
-      <p>${detail1.overview}</p>
-      <p>Director: ${detail2.name}</p>
+      <p>${movie.overview}</p>
+      <p>Director: ${director.name}</p>
       <p class="stars">Stars: ${stars}</p>
-      <button class="watchlist">
+      <button class="watchlist" id="add-watchlist">
         <i class="fa-solid fa-plus"></i>
-        <p>My Watchlist</p>
+        <p>Add to Watchlist</p>
       </button>
     </div>
   `;
+
+  const closeBtn = document.querySelector(".fa-xmark");
+  closeBtn.addEventListener("click", function () {
+    movieDetailsInModal.style.display = "none";
+  });
 }
+
+const addToWatchListBtn = document.getElementById("add-watchlist");
+addToWatchListBtn.addEventListener("click", function () {
+  addToWatchList(currentMovieDetails);
+});
+
+function addToWatchList(movie) {
+  let watchlist = JSON.parse(localStorage.getItem("watchlist")) || [];
+
+  const movieExists = watchlist.some((item) => item.id === movie.id);
+
+  if (!movieExists) {
+    watchlist.push(movie);
+    localStorage.setItem("watchlist", JSON.stringify(watchlist));
+    alert(`${movie.title} added to watchlist!`);
+  } else {
+    alert(`${movie.title} is already in your watchlist!`);
+  }
+}
+
+document.getElementById("watchlist").addEventListener("click", function () {
+  window.location.href = "watchlist.html";
+});
