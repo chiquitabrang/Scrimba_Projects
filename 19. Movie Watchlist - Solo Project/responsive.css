@@ -1,0 +1,56 @@
+@media (max-width: 480px) {
+  form {
+    width: 90%;
+  }
+
+  nav {
+    padding: 0.5rem 0;
+  }
+  .search {
+    width: 95%;
+    justify-content: space-between;
+  }
+
+  .search-input {
+    margin-left: 0;
+  }
+
+  .top-section {
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+
+  .top-section h1 {
+    font-size: 3.5rem;
+    padding: 0;
+    text-align: center;
+  }
+
+  .watchlist {
+    font-size: 1.6rem;
+    justify-content: space-between;
+    padding: 0 1rem;
+  }
+
+  .top-section {
+    justify-content: flex-start;
+    padding-top: 1rem;
+    gap: 1rem;
+  }
+  .wave {
+    width: 300%;
+    height: 100%;
+  }
+
+  .wave1 {
+    background-size: 50% 50px;
+  }
+  .wave2 {
+    background-size: 50% 70px;
+    animation: animate 12s linear infinite;
+  }
+  .wave3 {
+    background-size: 50% 50px;
+    animation: animate 18s linear infinite;
+  }
+}

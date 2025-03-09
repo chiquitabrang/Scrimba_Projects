@@ -10,14 +10,14 @@ html {
 }
 
 body {
+  width: 100%;
   max-width: 100vw;
-  width: 100vw;
   font-family: "Roboto", sans-serif;
   overflow-x: hidden;
 }
 
 nav {
-  width: 100vw;
+  width: 100%;
   background-color: #efc51c;
   display: flex;
   align-items: center;
@@ -51,7 +51,6 @@ input {
   font-size: 1.6rem;
   font-family: sans-serif;
   color: #fff;
-  /* margin-left: 0.5rem; */
   border: none;
   outline: none;
   background: transparent;
@@ -178,10 +177,8 @@ input {
   max-width: 100%;
   background: #eee;
   border-radius: 0 1rem 1rem 1rem;
-}
-
-.movie-item:last-child {
-  margin-right: 1.8rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .movie-poster {
@@ -236,4 +233,113 @@ input {
 
 #details-btn:hover {
   background: #d3d3d3;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  max-height: 70%;
+  height: auto;
+  background-color: pink;
+  z-index: 200;
+  border-radius: 1rem;
+  display: none;
+  flex-direction: column;
+  padding: 2rem;
+  overflow-y: auto;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.detail-top {
+  max-height: 20vh;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1rem;
+}
+
+.detail-top img {
+  height: auto;
+  max-height: 100%;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.text-details {
+  padding: 1rem;
+}
+
+.text-details * {
+  margin-bottom: 0.8rem;
+}
+
+.text-details h2 {
+  font-size: 2.5rem;
+}
+
+.year-hour p {
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+}
+
+.year-hour p i,
+.genre i,
+.detail-bottom p i {
+  margin: 0 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.3rem;
+  vertical-align: middle;
+  color: #000;
+  cursor: default;
+}
+
+.genre,
+.rating {
+  font-size: 1.3rem;
+}
+
+.rating i {
+  cursor: default;
+}
+
+.detail-bottom {
+  height: 45%;
+  padding: 1rem;
+  font-size: 1.3rem;
+}
+
+.detail-bottom p {
+  margin-bottom: 0.8rem;
+}
+
+.detail-bottom p:first-child {
+  line-height: 1.6rem;
+  text-align: justify;
+}
+
+.modal button {
+  margin: 3rem auto;
+  height: 3.2rem;
+  font-size: 1.4rem;
+  border-radius: 2rem;
+  color: #0047ab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal button p {
+  margin: 0;
+}
+
+.fa-plus {
+  color: #0047ab;
 }
