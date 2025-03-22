@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MovieDock</title>
+
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <link rel="stylesheet" href="watchlist.css" />
+    <!-- <link rel="stylesheet" href="responsive.css" /> -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav>
+      <form action="">
+        <div class="search">
+          <input
+            type="text"
+            class="search-input"
+            id="search"
+            placeholder="Search MovieDock"
+          />
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+      </form>
+    </nav>
+
+    <section class="top-section">
+      <h1>My Watchlist</h1>
+      <button class="search-movie" id="search-movie">
+        <p>Search Movies</p>
+        <i class="fa-solid fa-list"></i>
+      </button>
+
+      <div class="line line-1">
+        <div
+          class="wave wave1"
+          style="background-image: url(./border-img/1.png)"
+        ></div>
+      </div>
+
+      <div class="line line-2">
+        <div
+          class="wave wave2"
+          style="background-image: url(./border-img/2.png)"
+        ></div>
+      </div>
+
+      <div class="line line-3">
+        <div
+          class="wave wave3"
+          style="background-image: url(./border-img/3.png)"
+        ></div>
+      </div>
+    </section>
+
+    <section class="watchlist-container" id="watchlist-container"></section>
+
+    <script src="watchlist.js" type="module" defer></script>
+  </body>
+</html>
