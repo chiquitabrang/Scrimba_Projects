@@ -176,8 +176,6 @@ input {
   padding: 3rem 1rem 2rem 1rem;
 }
 
-/* Not finalized */
-
 .movie-item {
   max-width: 100%;
   background: #eee;
@@ -246,7 +244,6 @@ input {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 50%;
-  /* max-height: 70%; */
   height: auto;
   background-color: #282828;
   z-index: 200;
@@ -254,7 +251,6 @@ input {
   display: none;
   flex-direction: column;
   padding: 2rem;
-  overflow: scroll;
   color: #fff;
 }
 
