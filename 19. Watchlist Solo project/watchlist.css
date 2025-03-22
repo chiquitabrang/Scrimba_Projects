@@ -172,7 +172,6 @@ input {
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  background: olive;
   border-radius: 0.5rem;
   margin-bottom: 2rem;
 }
